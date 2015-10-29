@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'polls',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -76,8 +77,12 @@ WSGI_APPLICATION = 'kube_cd_project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'kube_cd_talk',
+        'USER': os.environ.get('POSTGRES_USER', None),
+        'HOST': os.environ.get('POSTGRES_SERVICE_HOST', None),
+        'PORT': os.environ.get('POSTGRES_SERVICE_PORT', None),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', None),
     }
 }
 
