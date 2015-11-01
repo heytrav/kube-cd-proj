@@ -34,9 +34,9 @@ spec:
         - name: APP_SERVER_NAME
           value: ${SERVER_NAME_STAGING}
         - name: CERT_FILE
-          value: staging.crt
+          value: prod.crt
         - name: KEY_FILE
-          value: staging.key
+          value: prod.key
         ports:
         - containerPort: 80
           name: http
