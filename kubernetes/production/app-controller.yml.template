@@ -32,7 +32,7 @@ spec:
         - name: APP_HOST
           value: ${APP_HOST}
         - name: APP_SERVER_NAME
-          value: ${SERVER_NAME_STAGING}
+          value: ${SERVER_NAME}
         - name: CERT_FILE
           value: prod.crt
         - name: KEY_FILE
@@ -59,14 +59,14 @@ spec:
         resources: {}
         terminationMessagePath: /dev/termination-log
         env:
-        - name: APP_SECRET_KEY
-          value: ${SECRET_KEY_STAGING}
-        - name: APP_SERVER_NAME
-          value: ${SERVER_NAME_STAGING}
         - name: DEPLOYMENT
-          value: ${DEPLOYMENT}
+          value: production
         - name: DBNAME
           value: kube_cd_talk
+        - name: POSTGRES_USER
+          value: ${POSTGRES_USER}
+        - name: POSTGRES_PASSWORD
+          value: ${POSTGRES_PASSWORD}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
