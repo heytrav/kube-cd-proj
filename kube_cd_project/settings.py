@@ -80,8 +80,12 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'kube_cd_talk',
         'USER': os.environ.get('POSTGRES_USER', None),
-        'HOST': os.environ.get('POSTGRES_SERVICE_HOST', None),
-        'PORT': os.environ.get('POSTGRES_SERVICE_PORT', None),
+        'HOST': os.environ.get('POSTGRES_SERVICE_HOST',
+                               os.environ.get('POSTGRES_PORT_5432_TCP_ADDR',
+                                              None)),
+        'PORT': os.environ.get('POSTGRES_SERVICE_PORT',
+                               os.environ.get('POSTGRES_PORT_5432_TCP_PORT',
+                                              None)),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD', None),
     }
 }
