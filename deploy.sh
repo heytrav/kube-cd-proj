@@ -1,6 +1,5 @@
 #!/bin/sh
 
-#!/bin/sh
 
 export VERSION=$1
 : ${CONTROLLER:=django-app}
