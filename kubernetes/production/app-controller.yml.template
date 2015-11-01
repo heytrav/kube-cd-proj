@@ -65,6 +65,8 @@ spec:
           value: ${SERVER_NAME_STAGING}
         - name: DEPLOYMENT
           value: ${DEPLOYMENT}
+        - name: DBNAME
+          value: kube_cd_talk
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:

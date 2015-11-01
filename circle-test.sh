@@ -10,6 +10,9 @@ docker run \
     --name django-app \
     -e BRANCH=`git rev-parse --abbrev-ref HEAD`  \
     -e DEPLOYMENT=development \
+    -e DBNAME=circle_test \
+    -e POSTGRES_USER=ubuntu \
+    -e POSTGRES_SERVICE_HOST=127.0.0.1 \
+    -e POSTGRES_SERVICE_PORT=5432 \
     -e TEST=1 \
-    -e START_DELAY=10 \
     $HOST/$IMAGE:$VERSION

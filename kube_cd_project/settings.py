@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'kube_cd_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'kube_cd_talk',
+        'NAME': os.environ.get('DBNAME', None),
         'USER': os.environ.get('POSTGRES_USER', None),
         'HOST': os.environ.get('POSTGRES_SERVICE_HOST',
                                os.environ.get('POSTGRES_PORT_5432_TCP_ADDR',
