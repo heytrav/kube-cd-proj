@@ -4,6 +4,7 @@ sleep $START_DELAY
 
 # For docker-compose usage
 : ${DEPLOYMENT:=development}
+: ${VERBOSITY:=1}
 
 python3 manage.py migrate
 
@@ -14,7 +15,7 @@ if [ "$DEPLOYMENT" = "production" ]; then
     /usr/bin/supervisord --nodaemon -c /etc/supervisor/supervisord.conf
 else
     echo Running python development server
-    python3 manage.py runserver -v 3
+    python3 manage.py runserver -v $VERBOSITY 0.0.0.0:8000
 fi
 
 if [ "$TEST" = 1 ]; then
