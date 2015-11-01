@@ -3,8 +3,8 @@ machine:
         CLOUDSDK_INSTALL_DIR: /home/ubuntu
         CLOUDSDK_CORE_DISABLE_PROMPTS: 1
         GOOGLE_SECRET_FILE: /tmp/google_secret.json
-        HOST: us.gcr.io/sample-application-1112
-        IMAGE: django-app
+        HOST: us.gcr.io
+        IMAGE: sample-application-1112/django-app
     services:
         - docker
 
