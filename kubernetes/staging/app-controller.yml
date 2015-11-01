@@ -1,0 +1,75 @@
+appVersion: v1
+kind: ReplicationController
+metadata:
+  creationTimestamp: null
+  labels:
+    component: app
+    role: app
+    version: ${VERSION}
+    branch: ${BRANCH}
+  name: app-${VERSION}
+spec:
+  replicas: 1
+  selector:
+    component: app
+    role: app
+    version: ${VERSION}
+    branch: ${BRANCH}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        component: app
+        role: app
+        version: ${VERSION}
+        branch: ${BRANCH}
+    spec:
+      containers:
+      - image: quay.io/heytrav/app-nginx:latest
+        imagePullPolicy: IfNotPresent
+        name: app-nginx
+        env:
+        - name: APP_HOST
+          value: ${APP_HOST}
+        - name: APP_SERVER_NAME
+          value: ${SERVER_NAME_STAGING}
+        - name: CERT_FILE
+          value: staging.crt
+        - name: KEY_FILE
+          value: staging.key
+        ports:
+        - containerPort: 80
+          name: http
+          protocol: TCP
+        - containerPort: 443
+          name: https
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        volumeMounts:
+        - mountPath: /etc/nginx/certs/app
+          name: ssl-certs
+      - image: quay.io/heytrav/django-app:${VERSION}
+        imagePullPolicy: IfNotPresent
+        name: app
+        ports:
+        - containerPort: 8000
+          name: django
+          protocol: TCP
+        resources: {}
+        terminationMessagePath: /dev/termination-log
+        env:
+        - name: APP_SECRET_KEY
+          value: ${SECRET_KEY_STAGING}
+        - name: APP_SERVER_NAME
+          value: ${SERVER_NAME_STAGING}
+        - name: DEPLOYMENT
+          value: ${DEPLOYMENT}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      volumes:
+      - hostPath:
+          path: /home/travis/app/certs
+        name: ssl-certs
+status:
+  replicas: 0

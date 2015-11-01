@@ -1,0 +1,43 @@
+machine:
+    environment:
+        HOST: quay.io/heytrav
+        IMAGE: django-app
+    services:
+        - docker
+
+dependencies:
+    cache_directories:
+        - ~/kubernetes
+    pre:
+        - ./ensure-kubernetes-installed.sh
+    override:
+        - mkdir ~/.kube
+        - envsubst < kubeconfig.template > ~/.kube/config
+        - docker info
+        - docker build -t $HOST/$IMAGE:$(git describe) .
+
+test:
+    override:
+        - ./circle-test.sh $(git describe)
+
+deployment:
+    feature:
+        branch: /pull\/\d+/
+        commands:
+            - docker push $HOST/$IMAGE:$(git describe)
+            - ./deploy.sh $(git describe)
+    production:
+        branch: master
+        commands:
+            - docker push $HOST/$IMAGE:$(git describe)
+            - docker tag $HOST/$IMAGE:$(git describe) $HOST/$IMAGE:latest
+            - docker push $HOST/$IMAGE:latest
+            - ./deploy.sh $(git describe)
+    release:
+        tag: /v[0-9]+(\.[0-9]+)*/
+        #owner: circleci
+        commands:
+            - docker push $HOST/$IMAGE:$(git describe)
+            - docker tag $HOST/$IMAGE:$(git describe) $HOST/$IMAGE:latest
+            - docker push $HOST/$IMAGE:latest
+            - ./deploy.sh $(git describe)
