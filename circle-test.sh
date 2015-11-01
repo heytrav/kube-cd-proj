@@ -3,8 +3,7 @@
 
 VERSION=$1
 
-POSTGRES_HOST=`echo /etc/hosts | cut -d " " -f 3`
-
+POSTGRES_HOST=$(cat /etc/hosts | cut -d " " -f 3)
 docker run \
     -h django-app \
     --name django-app \
