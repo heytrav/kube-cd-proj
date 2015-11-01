@@ -1,6 +1,9 @@
 machine:
     environment:
-        HOST: quay.io/heytrav
+        CLOUDSDK_INSTALL_DIR: /home/ubuntu
+        CLOUDSDK_CORE_DISABLE_PROMPTS: 1
+        GOOGLE_SECRET_FILE: /tmp/google_secret.json
+        HOST: us.gcr.io
         IMAGE: django-app
     services:
         - docker
@@ -14,30 +17,33 @@ dependencies:
         - mkdir ~/.kube
         - envsubst < kubeconfig.template > ~/.kube/config
         - docker info
+        - echo $GOOGLE_SECRET_JSON > $GOOGLE_SECRET_FILE
+        - gcloud auth activate-service-account --key-file $GOOGLE_SECRET_FILE
         - docker build -t $HOST/$IMAGE:$(git describe) .
 
 test:
     override:
+        - gcloud --version
         - ./circle-test.sh $(git describe)
 
 deployment:
     feature:
         branch: /pull\/\d+/
         commands:
-            - docker push $HOST/$IMAGE:$(git describe)
+            - gcloud docker push $HOST/$IMAGE:$(git describe)
               #- ./deploy.sh $(git describe)
     production:
         branch: master
         commands:
-            - docker push $HOST/$IMAGE:$(git describe)
+            - gcloud docker push $HOST/$IMAGE:$(git describe)
             - docker tag $HOST/$IMAGE:$(git describe) $HOST/$IMAGE:latest
-            - docker push $HOST/$IMAGE:latest
+            - gcloud docker push $HOST/$IMAGE:latest
               #- ./deploy.sh $(git describe)
     release:
         tag: /v[0-9]+(\.[0-9]+)*/
         #owner: circleci
         commands:
-            - docker push $HOST/$IMAGE:$(git describe)
+            - gcloud docker push $HOST/$IMAGE:$(git describe)
             - docker tag $HOST/$IMAGE:$(git describe) $HOST/$IMAGE:latest
-            - docker push $HOST/$IMAGE:latest
+            - gcloud docker push $HOST/$IMAGE:latest
               #- ./deploy.sh $(git describe)
