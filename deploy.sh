@@ -2,7 +2,7 @@
 
 
 export VERSION=$1
-: ${CONTROLLER:=django-app}
+: ${CONTROLLER:=app}
 : ${CONTROLLER_FILE:=app-controller.yml}
 
 RELEASE=$( git tag | grep $VERSION )
