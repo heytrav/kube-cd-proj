@@ -1,6 +1,5 @@
 #!/bin/sh
 
-
 export VERSION=$1
 : ${CONTROLLER:=app}
 : ${CONTROLLER_FILE:=app-controller.yml}
