@@ -4,7 +4,6 @@ MAINTAINER Travis Holton <wtholton@gmail.com>
 RUN apt-get update && apt-get install -y git \
     python3.5 \
     python3.5-dev \
-    python3.5-psycopg2 \
     python3-pip \
     libpq-dev \
     supervisor \
@@ -12,7 +11,7 @@ RUN apt-get update && apt-get install -y git \
 ADD supervisor /etc/supervisor/
 
 ADD requirements.txt /tmp/
-RUN pip3.5 install -I -r /tmp/requirements.txt
+RUN pip3 install -I -r /tmp/requirements.txt
 
 WORKDIR /usr/local/kube_cd_project
 ADD . /usr/local/kube_cd_project
