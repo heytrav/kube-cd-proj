@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y git \
     python3.5 \
     python3.5-dev \
     python3.5-psycopg2 \
-    python3.5-pip \
+    python3-pip \
     libpq-dev \
     supervisor \
     postgresql
