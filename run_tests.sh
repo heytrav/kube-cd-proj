@@ -2,7 +2,7 @@
 
 set -e
 
-python3 manage.py test polls
+python3.5 manage.py test polls
 #nosetests -v --with-doctest \
     #--with-xunit --xunit-file=xunit.xml \
     #--with-coverage --cover-html --cover-html-dir=htmlcov \

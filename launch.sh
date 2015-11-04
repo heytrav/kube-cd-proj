@@ -6,7 +6,7 @@ sleep $START_DELAY
 : ${DEPLOYMENT:=development}
 : ${VERBOSITY:=1}
 
-python3 manage.py migrate
+python3.5 manage.py migrate
 
 echo Ran migrations
 
@@ -20,6 +20,6 @@ else
         /usr/bin/supervisord --nodaemon -c /etc/supervisor/supervisord.conf
     else
         echo Running python development server
-        python3 manage.py runserver -v $VERBOSITY 0.0.0.0:8000
+        python3.5 manage.py runserver -v $VERBOSITY 0.0.0.0:8000
     fi
 fi
