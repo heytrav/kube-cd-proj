@@ -39,10 +39,6 @@ class QuestionMethodTests(TestCase):
 class QuestionViewTests(TestCase):
 
     def test_index_view_with_no_questions(self):
-        """TODO: Docstring for test_index_view_with_no_questions.
-        :returns: TODO
-
-        """
         response = self.client.get(reverse('polls:index'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'No polls are available.')
