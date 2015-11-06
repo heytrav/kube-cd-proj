@@ -24,5 +24,5 @@ fi
 if [ "$CURRENT_CONTROLLER" = "" ]; then
     $KUBE_CMD create -f ${CONTROLLER_FILE}
 else
-    $KUBE_CMD rolling-update $CURRENT_CONTROLLER -f ${CONTROLLER_FILE}
+    $KUBE_CMD rolling-update $CURRENT_CONTROLLER -f ${CONTROLLER_FILE} --rollback=true
 fi
