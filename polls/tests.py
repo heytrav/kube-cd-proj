@@ -53,6 +53,7 @@ class QuestionViewTests(TestCase):
         )
 
     def test_index_view_with_a_feature_question(self):
+        """Test stuff"""
         create_question(question_text="Future question.", days=30)
         response = self.client.get(reverse('polls:index'))
         self.assertContains(response, "No polls are available.",
