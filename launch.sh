@@ -13,7 +13,7 @@ if [ "$TEST" = 1 ]; then
 else
     if [ "$DEPLOYMENT" = "production" ]; then
         echo Run wsgi server
-        DJANGO_COMMAND="gunicorn kube_cd_project.wsgi"
+        DJANGO_COMMAND="gunicorn -b 0.0.0.0:8000 kube_cd_project.wsgi"
     else
         echo Running python development server
         DJANGO_COMMAND="python3.5 manage.py runserver 0.0.0.0:8000"
