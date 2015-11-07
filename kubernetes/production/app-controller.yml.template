@@ -25,7 +25,7 @@ spec:
         branch: ${BRANCH}
     spec:
       containers:
-      - image: asia.gcr.io/sample-application-1112/app-nginx:latest
+      - image: us.gcr.io/sample-application-1112/app-nginx:latest
         imagePullPolicy: IfNotPresent
         name: app-nginx
         env:
@@ -49,7 +49,7 @@ spec:
         volumeMounts:
         - mountPath: /etc/nginx/certs/app
           name: ssl-certs
-      - image: asia.gcr.io/sample-application-1112/django-app:${VERSION}
+      - image: us.gcr.io/sample-application-1112/django-app:${VERSION}
         imagePullPolicy: IfNotPresent
         name: app
         ports:
