@@ -67,6 +67,8 @@ spec:
           value: ${POSTGRES_USER}
         - name: POSTGRES_PASSWORD
           value: ${POSTGRES_PASSWORD}
+        - name: SECRET_KEY
+          value: ${SECRET_KEY_STAGING}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
