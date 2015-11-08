@@ -37,8 +37,6 @@ spec:
           value: staging.crt
         - name: KEY_FILE
           value: staging.key
-        - name: VERSION
-          value: ${VERSION}
         ports:
         - containerPort: 80
           name: http
@@ -71,6 +69,8 @@ spec:
           value: ${POSTGRES_PASSWORD}
         - name: SECRET_KEY
           value: ${SECRET_KEY_STAGING}
+        - name: VERSION
+          value: ${VERSION}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:
