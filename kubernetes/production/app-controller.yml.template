@@ -25,7 +25,7 @@ spec:
         branch: ${BRANCH}
     spec:
       containers:
-      - image: us.gcr.io/sample-application-1112/app-nginx:latest
+      - image: us.gcr.io/sample-application-1112/app-nginx:v1
         imagePullPolicy: IfNotPresent
         name: app-nginx
         env:
