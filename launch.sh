@@ -13,11 +13,9 @@ if [ "$TEST" = 1 ]; then
 else
     if [ "$DEPLOYMENT" = "production" ]; then
         echo Run wsgi server
-        DJANGO_COMMAND="gunicorn -b 0.0.0.0:8000 kube_cd_project.wsgi"
+        /usr/bin/supervisord --nodaemon -c /etc/supervisor/supervisord.conf
     else
         echo Running python development server
-        DJANGO_COMMAND="python3.5 manage.py runserver 0.0.0.0:8000"
+        python3.5 manage.py runserver 0.0.0.0:8000
     fi
-    sed -i 's/DJANGO_COMMAND/'"$DJANGO_COMMAND"'/g' /etc/supervisor/conf.d/django.conf
-    /usr/bin/supervisord --nodaemon -c /etc/supervisor/supervisord.conf
 fi
