@@ -10,6 +10,7 @@ docker run \
     -e BRANCH=`git rev-parse --abbrev-ref HEAD`  \
     -e DEPLOYMENT=development \
     -e DBNAME=circle_test \
+    -e SECRET_KEY="Woohoo look at my test key!" \
     -e POSTGRES_USER=ubuntu \
     -e POSTGRES_SERVICE_HOST=$POSTGRES_HOST \
     -e POSTGRES_SERVICE_PORT=5432 \
