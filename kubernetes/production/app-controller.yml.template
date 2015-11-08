@@ -69,6 +69,8 @@ spec:
           value: ${POSTGRES_PASSWORD}
         - name: SECRET_KEY
           value: ${SECRET_KEY}
+        - name: VERSION
+          value: ${VERSION}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       volumes:

@@ -37,6 +37,8 @@ spec:
           value: staging.crt
         - name: KEY_FILE
           value: staging.key
+        - name: VERSION
+          value: ${VERSION}
         ports:
         - containerPort: 80
           name: http
