@@ -19,7 +19,7 @@ $KUBE_CMD config use-context $KUBERNETES_CONTEXT
 CURRENT_CONTROLLER=$($KUBE_CMD get rc | grep ${CONTROLLER} | cut -f 1 -d " ")
 envsubst < kubernetes/$KUBERNETES_CONTEXT/${CONTROLLER_FILE}.template > $CONTROLLER_FILE
 if [ "$DEPLOY_ENVIRONMENT" = "production" ]; then
-    cat $CONTROLLER_FILE > $CIRCLE_ARTIFACTS/${CONTROLLER_FILE}
+    cat $CONTROLLER_FILE > $CIRCLE_ARTIFACTS/${CONTROLLER}-${VERSION}.yml
 fi
 if [ "$CURRENT_CONTROLLER" = "" ]; then
     $KUBE_CMD create -f ${CONTROLLER_FILE}
