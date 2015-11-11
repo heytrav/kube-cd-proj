@@ -1,7 +1,7 @@
 from django.views import generic
 from django.conf import settings
 
-from .models import Meal
+from .models import Meal, Ingredient
 from .forms import IngredientForm
 
 
@@ -27,7 +27,6 @@ class IndexView(generic.ListView):
 
 class IngredientsView(generic.ListView):
     template_name = 'cookbook/ingredients.html'
-    context_object_name = 'ingredient_list'
 
     def get_context_data(self, **kwargs):
         """Return the context data
