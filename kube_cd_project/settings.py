@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'django_nose',
     'polls',
+    'cookbook',
 )
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
