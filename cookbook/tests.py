@@ -8,4 +8,4 @@ class IngredientViewTests(TestCase):
         response = self.client.get(reverse('cookbook:ingredients'))
         self.assertContains(response, 'No ingredients available.')
         self.assertEqual(response.status_code, 200)
-        self.assertEqual(response.context['ingredient_list'], [])
+        self.assertQuerysetEqual(response.context['ingredient_list'], [])
