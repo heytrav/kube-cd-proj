@@ -38,7 +38,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django_nose',
+    'bootstrap3',
     'polls',
+    'cookbook',
 )
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'

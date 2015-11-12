@@ -1,0 +1,18 @@
+{% extends "cookbook/base.html" %}
+{% load bootstrap3 %}
+{% block content %}
+    {% if ingredient_list %}
+    <ul>
+        {% for ingredient in ingredient_list %}
+        <li>
+            <a href="{% url 'cookbook:edit_ingredient' ingredient.id %}"
+                >{{ingredient.name}}</a>&nbsp;
+            <a href="{% url 'cookbook:delete_ingredient' ingredient.id %}">Delete</a>
+        </li>
+        {% endfor %} 
+    </ul>
+    {% else %}
+    <p>No ingredients available.</p>
+    {% endif %}
+    
+{% endblock content %}
