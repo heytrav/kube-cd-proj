@@ -34,7 +34,7 @@ class IngredientCreate(TestCase):
 
     """Test creating ingredients"""
 
-    def test_create_ingredient():
+    def test_create_ingredient(self):
         response = self.client.post(reverse('cookbook:create_ingredient'),
                                     {'name': 'Parsely',
                                      'stub': 'parsely',
