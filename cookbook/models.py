@@ -1,4 +1,5 @@
 from django.db import models
+from django.core.urlresolvers import reverse
 
 
 class Meal(models.Model):
@@ -16,6 +17,9 @@ class Ingredient(models.Model):
     name = models.CharField(max_length=500)
     stub = models.CharField(max_length=500)
     description = models.TextField(blank=True)
+
+    def get_absolute_url(self):
+        return reverse('cookbook:edit_ingredient', kwargs={'pk': self.pk})
 
     def __str__(self):
         return self.name
