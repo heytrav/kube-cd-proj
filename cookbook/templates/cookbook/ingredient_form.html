@@ -1,0 +1,18 @@
+{% extends "cookbook/base.html" %}
+{% load bootstrap3 %}
+{% block title %}
+    Create/Edit Ingredient
+{% endblock title %}
+
+{% block content %}
+{% bootstrap_messages %} 
+<form action="{{ request.path }}" method="post" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">
+     {% bootstrap_icon "star" %}    Submit
+    </button>
+    {% endbuttons %}
+</form>
+{% endblock content %}

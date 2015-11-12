@@ -1,5 +1,6 @@
 from django.views import generic
 from django.conf import settings
+from django.core.urlresolvers import reverse_lazy
 
 from .models import Meal, Ingredient
 from .forms import IngredientForm
@@ -43,9 +44,40 @@ class IngredientsView(generic.ListView):
         return Ingredient.objects.all()
 
 
+class IngredientCreate(generic.edit.CreateView):
+    model = Ingredient
+    fields = ['name', 'stub', 'description']
+    success_url = reverse_lazy('cookbook:ingredients')
+
+    def get_context_data(self, **kwargs):
+        """Return the context data
+
+        :**kwargs: arguments
+        :returns: context object for view
+
+        """
+        context = super(IngredientCreate, self).get_context_data(**kwargs)
+        context['version'] = settings.VERSION
+        return context
 
 
-class IngredientEditView(generic.edit.FormView):
-    template_name = 'cookbook/ingredients.html'
-    form_class = IngredientForm
-    success_url = '/success/'
+class IngredientUpdate(generic.edit.UpdateView):
+    model = Ingredient
+    fields = ['name', 'stub', 'description']
+    success_url = reverse_lazy('cookbook:ingredients')
+
+    def get_context_data(self, **kwargs):
+        """Return the context data
+
+        :**kwargs: arguments
+        :returns: context object for view
+
+        """
+        context = super(IngredientUpdate, self).get_context_data(**kwargs)
+        context['version'] = settings.VERSION
+        return context
+
+
+class IngredientDelete(generic.edit.DeleteView):
+    model = Ingredient
+    success_url = reverse_lazy('cookbook:ingredients')

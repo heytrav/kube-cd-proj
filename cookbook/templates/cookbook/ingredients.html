@@ -1,16 +1,28 @@
 {% extends "cookbook/base.html" %}
 {% load bootstrap3 %}
+{% block title %} Ingredients {% endblock title %}
 {% block content %}
+<a href="{% url 'cookbook:create_ingredient' %}">Create ingredient</a>
+    
     {% if ingredient_list %}
-    <ul>
+    <table class="table">
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th colspan="2">
+
+            </th>
+        </tr>
         {% for ingredient in ingredient_list %}
-        <li>
-            <a href="{% url 'cookbook:edit_ingredient' ingredient.id %}"
-                >{{ingredient.name}}</a>&nbsp;
-            <a href="{% url 'cookbook:delete_ingredient' ingredient.id %}">Delete</a>
-        </li>
-        {% endfor %} 
-    </ul>
+        <tr>
+            <td>{{ingredient.name}}</td>
+            <td>{{ingredient.description}}</td>
+            <td><a href="{% url 'cookbook:edit_ingredient' ingredient.id %}">Edit</a></td>
+            <td><a href="{% url 'cookbook:delete_ingredient' ingredient.id %}">Delete</a></td>
+        </tr>
+       {% endfor %} 
+    </table>
+    
     {% else %}
     <p>No ingredients available.</p>
     {% endif %}
