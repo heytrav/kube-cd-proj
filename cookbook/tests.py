@@ -75,6 +75,10 @@ class MeasurementCreate(TestCase):
 
     """Test creating measurements"""
 
+    def test_navigate_to_create_measurement(self):
+        response = self.client.get(reverse('cookbook:create_measurement'))
+        self.assertEqual(response.status_code, 200)
+
     def test_create_measurement(self):
         response = self.client.post(reverse('cookbook:create_measurement'),
                                     {'name': 'Fluid Ounce',

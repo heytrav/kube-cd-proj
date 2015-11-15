@@ -122,7 +122,7 @@ class MeasurementCreate(generic.edit.CreateView):
         :returns: context object for view
 
         """
-        context = super(IngredientCreate, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['version'] = settings.VERSION
         return context
 
