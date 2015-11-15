@@ -50,10 +50,36 @@ class IngredientCreate(TestCase):
 class MeasurementViewList(TestCase):
 
     """Test display of measurements"""
+
     def test_measurement_list_no_results(self):
         response = self.client.get(reverse('cookbook:measurements'))
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'No measurements available.')
         self.assertQuerysetEqual(response.context['measurement_list'],
                                  [])
+
+    def test_measurement_list(self):
+        create_measurement('Fluid Ounce', 'floz', 'Fluid ounce is stupid.')
+        create_measurement('Ounce', 'oz', 'Yey, an ounce!')
+        response = self.client.get(reverse('cookbook:measurements'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Fluid ounce is stupid.')
+        self.assertQuerysetEqual(
+            response.context['measurement_list'].order_by('stub'),
+            ['<Measurement: Fluid Ounce>',
+             '<Measurement: Ounce>']
+        )
+
+
+class MeasurementCreate(TestCase):
+
+    """Test creating measurements"""
+
+    def test_create_measurement(self):
+        response = self.client.post(reverse('cookbook:create_measurement'),
+                                    {'name': 'Fluid Ounce',
+                                     'stub': 'floz',
+                                     'description': 'Fluid ounce is stupid.'})
+        self.assertEqual(response.status_code, 302)
+
 
