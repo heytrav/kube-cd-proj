@@ -4,19 +4,23 @@
 {% block title %} Measurements {% endblock title %}
 {% block content %}
    {% if measurement_list %}
-   <tr>
-       <th>Name</th>
-       <th>Description</th>
-       <th colspan="2">
+   <table class="table">
+       <tr>
+           <th>Name</th>
+           <th>Description</th>
+           <th colspan="2">
 
-       </th>
-   </tr>
-   {% for measurement in measurement_list %}
-       <td>{{measurement.name}}</td>
-       <td>{{measurement.description}}</td>
-       <td><a href="{% url 'cookbook:edit_measurement' measurement.id %}">Edit</a></td>
-       <td><a href="{% url 'cookbook:delete_measurement' measurement.id %}">Delete</a></td>
-   {% endfor %}
+           </th>
+       </tr>
+       {% for measurement in measurement_list %}
+       <tr>
+           <td>{{measurement.name}}</td>
+           <td>{{measurement.description}}</td>
+           <td><a href="{% url 'cookbook:edit_measurement' measurement.id %}">Edit</a></td>
+           <td><a href="{% url 'cookbook:delete_measurement' measurement.id %}">Delete</a></td>
+       </tr>
+       {% endfor %}
+   </table>
    {% else %}
         <p>No measurements available.</p>
    {% endif %} 

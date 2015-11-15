@@ -2,7 +2,7 @@ from django.views import generic
 from django.conf import settings
 from django.core.urlresolvers import reverse_lazy
 
-from .models import Meal, Ingredient
+from .models import Meal, Ingredient, Measurement
 
 
 class IndexView(generic.ListView):
@@ -105,6 +105,27 @@ class MeasurementView(generic.ListView):
 
         """
         return Measurement.objects.all()
+
+
+
+class MeasurementCreate(generic.edit.CreateView):
+
+    """Create a measurement object."""
+    model = Measurement
+    fields = ['name', 'stub', 'description']
+    success_url = reverse_lazy('cookbook:measurements')
+
+    def get_context_data(self, **kwargs):
+        """Return the context data
+
+        :**kwargs: arguments
+        :returns: context object for view
+
+        """
+        context = super(IngredientCreate, self).get_context_data(**kwargs)
+        context['version'] = settings.VERSION
+        return context
+
 
 
 class MeasurementEdit(generic.edit.UpdateView):

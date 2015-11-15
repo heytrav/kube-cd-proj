@@ -1,15 +1,19 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
-from .models import Ingredient
+from .models import Ingredient, Measurement
 
 def create_ingredient(name, stub, description):
-    """Create basic ingredient
-
-    """
     return Ingredient.objects.create(name=name,
                                      stub=stub,
                                      description=description)
+
+def create_measurement(name, stub, description):
+    return Measurement.objects.create(name=name,
+                                      stub=stub,
+                                      description=description)
+
+
 
 class IngredientViewTests(TestCase):
 
@@ -41,3 +45,15 @@ class IngredientCreate(TestCase):
                                      'description': 'Green stuff'})
         # Should redirect to ingredients page
         self.assertEqual(response.status_code, 302)
+
+
+class MeasurementViewList(TestCase):
+
+    """Test display of measurements"""
+    def test_measurement_list_no_results(self):
+        response = self.client.get(reverse('cookbook:measurements'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'No measurements available.')
+        self.assertQuerysetEqual(response.context['measurement_list'],
+                                 [])
+
