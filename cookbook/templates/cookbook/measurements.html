@@ -3,6 +3,7 @@
 {% load bootstrap3 %}
 {% block title %} Measurements {% endblock title %}
 {% block content %}
+<a href="{% url 'cookbook:create_measurement' %}"> Create </a>
    {% if measurement_list %}
    <table class="table">
        <tr>

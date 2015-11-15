@@ -146,6 +146,8 @@ class MeasurementEdit(generic.edit.UpdateView):
         context['version'] = settings.VERSION
         return context
 
+
+
 class MeasurementDelete(generic.edit.DeleteView):
 
     """Delete a measurement from list."""
