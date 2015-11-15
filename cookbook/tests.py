@@ -82,4 +82,16 @@ class MeasurementCreate(TestCase):
                                      'description': 'Fluid ounce is stupid.'})
         self.assertEqual(response.status_code, 302)
 
+class MeasurementDelete(TestCase):
+    """Test deleting measurements."""
+
+    def test_delete_measurement(self):
+        ham = create_measurement('Ham', 'ham', 'Ham is good.')
+        delete_url = reverse('cookbook:delete_measurement',
+                             kwargs={'pk': ham.id})
+        response = self.client.post(delete_url)
+        self.assertEqual(response.status_code, 302)
+        list_response = self.client.get(reverse('cookbook:measurements'))
+        self.assertNotContains(list_response, 'Ham is good.')
+
 
