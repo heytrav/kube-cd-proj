@@ -86,6 +86,21 @@ class MeasurementCreate(TestCase):
                                      'description': 'Fluid ounce is stupid.'})
         self.assertEqual(response.status_code, 302)
 
+
+class MeasurementEdit(TestCase):
+
+    def test_navigate_to_edit(self):
+        ham = create_measurement('Ham', 'ham', 'Ham is cool.')
+        response = self.client.get(reverse('cookbook:edit_measurement',
+                                           kwargs={'pk': ham.id}))
+        self.assertEqual(response.status_code, 200)
+
+    def test_navigate_to_unknown_measurement(self):
+        response = self.client.get(reverse('cookbook:edit_measurement',
+                                           kwargs={'pk': 3000}))
+        self.assertEqual(response.status_code, 404)
+
+
 class MeasurementDelete(TestCase):
     """Test deleting measurements."""
 
