@@ -36,12 +36,9 @@ deployment:
         branch: master
         commands:
             - gcloud docker push $HOST/$IMAGE:$(git describe)
-            - docker tag -f $HOST/$IMAGE:$(git describe) $HOST/$IMAGE:latest
-            - gcloud docker push $HOST/$IMAGE:latest
             - ./deploy.sh $(git describe)
     release:
         tag: /v[0-9]+(\.[0-9]+)*/
-        #owner: circleci
         commands:
             - gcloud docker push $HOST/$IMAGE:$(git describe)
             - docker tag -f $HOST/$IMAGE:$(git describe) $HOST/$IMAGE:latest

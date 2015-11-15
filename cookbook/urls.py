@@ -11,4 +11,10 @@ urlpatterns = [
         name='edit_ingredient'),
     url(r'^ingredient/(?P<pk>[0-9]+)/delete$', views.IngredientDelete.as_view(),
         name='delete_ingredient'),
+    url('^measurements/$', views.MeasurementView.as_view(),
+        name='measurements'),
+    url('^measurement/(?P<pk>[0-9]+)/edit$', views.MeasurementEdit.as_view(),
+        name='edit_measurement'),
+    url('^measurement/(?P<pk>[0-9]+)/delete$', views.MeasurementDelete.as_view(),
+        name='delete_measurement'),
 ]
