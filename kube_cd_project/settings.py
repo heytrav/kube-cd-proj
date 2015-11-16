@@ -28,7 +28,7 @@ DEPLOY_ENVIRONMENT = os.environ.get('DEPLOYMENT', 'development')
 if DEPLOY_ENVIRONMENT != 'production':
     DEBUG = True
 
-ALLOWED_HOSTS = ['travissoto.com', 'travissoto.org']
+ALLOWED_HOSTS = ['travissoto.com']
 
 
 # Application definition
