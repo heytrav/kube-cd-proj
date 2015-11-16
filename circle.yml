@@ -19,6 +19,7 @@ dependencies:
         - docker info
         - echo $GOOGLE_SECRET_JSON > $GOOGLE_SECRET_FILE
         - gcloud auth activate-service-account --key-file $GOOGLE_SECRET_FILE
+        - gcloud docker pull $HOST/sample-application-1112/wiley:latest
         - docker build -t $HOST/$IMAGE:$(git describe) .
 
 test:

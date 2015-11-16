@@ -1,14 +1,7 @@
-FROM ubuntu:15.10
+FROM us.gcr.io/sample-application-1112/wiley:latest
+
 MAINTAINER Travis Holton <wtholton@gmail.com>
 
-RUN apt-get update && apt-get install -y git \
-    python3.5 \
-    python3.5-dev \
-    libncurses5-dev \
-    python3-pip \
-    libpq-dev \
-    supervisor \
-    postgresql
 ADD supervisor /etc/supervisor/
 
 ADD requirements.txt /tmp/
