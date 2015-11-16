@@ -32,6 +32,7 @@ class IngredientViewTests(TestCase):
         self.assertQuerysetEqual(response.context['ingredient_list'].order_by('stub'),
                                  ['<Ingredient: Garlic>',
                                   '<Ingredient: Onion>'])
+        self.assertTrue(False)
 
 
 class IngredientCreate(TestCase):
