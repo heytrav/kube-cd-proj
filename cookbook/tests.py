@@ -32,7 +32,6 @@ class IngredientViewTests(TestCase):
         self.assertQuerysetEqual(response.context['ingredient_list'].order_by('stub'),
                                  ['<Ingredient: Garlic>',
                                   '<Ingredient: Onion>'])
-        self.assertTrue(False)
 
 
 class IngredientCreate(TestCase):
@@ -46,6 +45,7 @@ class IngredientCreate(TestCase):
                                      'description': 'Green stuff'})
         # Should redirect to ingredients page
         self.assertEqual(response.status_code, 302)
+        self.assertTrue(False)
 
 
 class MeasurementViewList(TestCase):
