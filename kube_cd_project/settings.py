@@ -48,6 +48,12 @@ INSTALLED_APPS = (
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
+# Tell nose to measure coverage on the cookbook app
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=cookbook'
+]
+
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
