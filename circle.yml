@@ -25,6 +25,7 @@ dependencies:
 test:
     override:
         - gcloud --version
+        - mkdir -p $CIRCLE_TEST_REPORTS/django
         - ./circle-test.sh $(git describe)
 
 deployment:
