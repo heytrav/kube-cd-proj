@@ -8,8 +8,8 @@ sleep $START_DELAY
 python3.5 manage.py migrate
 
 if [ "$TEST" = 1 ]; then
-    echo Run tests
-    ./run_tests.sh
+    python3.5 manage.py test polls cookbook
+    autopep8 --in-place --aggressive -r kube_cd_project/ polls/ cookbook/
 else
     if [ "$DEPLOYMENT" = "production" ]; then
         echo Run wsgi server
