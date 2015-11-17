@@ -7,7 +7,7 @@ POSTGRES_HOST=$(cat /etc/hosts | cut -d " " -f 3)
 docker run \
     -h django-app \
     --name django-app \
-    -v $CIRCLE_TEST_REPORTS:/tmp \
+    -v $CIRCLE_TEST_REPORTS/django:/tmp/django \
     -e BRANCH=`git rev-parse --abbrev-ref HEAD`  \
     -e DEPLOYMENT=development \
     -e DBNAME=circle_test \
