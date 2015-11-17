@@ -56,7 +56,6 @@ if CIRCLE_TEST_REPORTS:
         '--with-cov',
         '--cov', 'cookbook',
         '--cov-report', 'xml',
-        '--cov-dir', report_dir,
     ]
 
 MIDDLEWARE_CLASSES = (
