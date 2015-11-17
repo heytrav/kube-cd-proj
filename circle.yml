@@ -12,10 +12,10 @@ dependencies:
     cache_directories:
         - ~/kubernetes
     pre:
-        - ./ensure-kubernetes-installed.sh
+        - ./kubernetes/ensure-kubernetes-installed.sh
     override:
         - mkdir ~/.kube
-        - envsubst < kubeconfig.template > ~/.kube/config
+        - envsubst < kubernetes/kubeconfig.template > ~/.kube/config
         - docker info
         - echo $GOOGLE_SECRET_JSON > $GOOGLE_SECRET_FILE
         - gcloud auth activate-service-account --key-file $GOOGLE_SECRET_FILE
