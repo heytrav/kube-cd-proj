@@ -52,11 +52,12 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 CIRCLE_TEST_REPORTS = os.environ.get('CIRCLE_TEST_REPORTS', None)
 if CIRCLE_TEST_REPORTS:
     report = os.path.join(CIRCLE_TEST_REPORTS, 'coverage.xml')
+    cover_report = "--cover-xml-file=%s" % report
     NOSE_ARGS = [
         '--with-cov',
         '--cov', 'cookbook',
         '--cov-report', 'xml',
-        '--cover-xml-file', report
+        cover_report,
     ]
 
 MIDDLEWARE_CLASSES = (
