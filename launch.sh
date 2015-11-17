@@ -1,7 +1,5 @@
 #!/bin/sh
 
-set -e
-
 
 # For docker-compose usage
 sleep $START_DELAY
