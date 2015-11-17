@@ -1,10 +1,11 @@
 #!/bin/sh
-sleep $START_DELAY
 
 
 # For docker-compose usage
+sleep $START_DELAY
 : ${DEPLOYMENT:=development}
 
+# run migrations
 python3.5 manage.py migrate
 
 if [ "$TEST" = 1 ]; then
