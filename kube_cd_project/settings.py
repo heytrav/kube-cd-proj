@@ -51,7 +51,7 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 # Tell nose to measure coverage on the cookbook app
 CIRCLE_TEST_REPORTS = os.environ.get('CIRCLE_TEST_REPORTS', None)
 if CIRCLE_TEST_REPORTS:
-    report = os.path.join(CIRCLE_TEST_REPORTS, 'django/coverage.xml')
+    report = os.path.join(CIRCLE_TEST_REPORTS, 'coverage.xml')
     NOSE_ARGS = [
         '--with-cov',
         '--cov', 'cookbook',
