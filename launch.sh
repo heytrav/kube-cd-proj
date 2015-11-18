@@ -1,7 +1,9 @@
 #!/bin/sh
 
+set -e
 
 # For docker-compose usage
+: ${START_DELAY:=0}
 sleep $START_DELAY
 : ${DEPLOYMENT:=development}
 
