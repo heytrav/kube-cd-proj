@@ -50,8 +50,9 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
 # Tell nose to measure coverage on the cookbook app
 NOSE_ARGS = [
-    '--with-coverage',
-    '--cover-package=cookbook'
+    '--with-cov',
+    '--cov', 'cookbook',
+    '--cov-report', 'xml',
 ]
 
 MIDDLEWARE_CLASSES = (
