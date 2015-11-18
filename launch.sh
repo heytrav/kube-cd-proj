@@ -11,7 +11,7 @@ python3.5 manage.py migrate
 if [ "$TEST" = 1 ]; then
     python3.5 manage.py test polls cookbook
     autopep8 --in-place --aggressive -r kube_cd_project/ polls/ cookbook/
-    if [[ "$CIRCLE_TEST_REPORTS" && -e coverage.xml ]]; then
+    if [ "$CIRCLE_TEST_REPORTS" != "" ]; then
         echo Copying coverage.xml to $CIRCLE_TEST_REPORTS
         cp coverage.xml $CIRCLE_TEST_REPORTS/
     fi
