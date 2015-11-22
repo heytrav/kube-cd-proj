@@ -7,4 +7,3 @@ Experimental app to demo for kubernetes talk
 * Add repo to CircleCI
 * Config files:
     * circle.yml
-    * test
