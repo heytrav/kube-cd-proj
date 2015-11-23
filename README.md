@@ -8,3 +8,4 @@ Experimental app to demo for kubernetes talk
 * Config files:
     * circle.yml
     * kubeconfig.template
+    * kubernetes binaries
